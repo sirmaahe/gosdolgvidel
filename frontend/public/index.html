@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A ti ih gosdolg videl?</title>
+    <style>
+        body {
+          animation: colorchange 100s;
+          -webkit-animation: colorchange 100s;
+        }
+
+        @keyframes colorchange
+        {
+          0%   {background: rgba(255,0,255, 0.6);}
+          25%  {background: rgba(255,0,255, 1);}
+          50%  {background: rgba(128,0,255, 0.6);}
+          75%  {background: rgba(128,128,255, 1);}
+          100% {background: rgba(255,0,255, 0.6);}
+        }
+
+        @-webkit-keyframes colorchange
+        {
+          0%   {background: rgba(255,0,255, 0.6);}
+          25%  {background: rgba(255,0,255, 1);}
+          50%  {background: rgba(128,0,255, 0.6);}
+          75%  {background: rgba(128,0,128, 1);}
+          100% {background: rgba(255,0,255, 0.6);}
+        }
+    </style>
+</head>
+<body>
+<div id="infinite-list" style="height: 100%; width: 100%;"></div>
+<iframe style="display: none;" width="560" height="315" src="https://www.youtube.com/embed/-gkibxWr0DY?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+</body>
+</html>

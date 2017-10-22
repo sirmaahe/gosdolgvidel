@@ -5,7 +5,8 @@ from aiohttp import ClientSession
 from bs4 import BeautifulSoup
 
 app = Sanic()
-app.static('/', 'public/index.html')
+app.static('/', 'frontend/build/index.html')
+app.static('/static/', 'frontend/build/static/')
 
 
 def parse(html):
