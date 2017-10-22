@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A ti ih gosdolg videl?</title>
+</head>
+<body style='background-color:#FF00FF'>
+<h1 id="gosdolg"></h1>
+<div id="infinite-list"></div>
+<script>
+    setInterval(function () {
+        fetch('http://localhost:8000/number/').then(function (data) {
+            return data.json()
+        }).then(function (data) {
+            document.getElementById('gosdolg').textContent = data.number
+        })
+    }, 200);
+
+    var listElm = document.querySelector('#infinite-list');
+
+    var nextItem = 1,
+        loadInProgress = false;
+    var loadMore = function () {
+        loadInProgress = true;
+        fetch('http://localhost:8000/news/?page=' + nextItem).then(function (data) {
+            return data.json()
+        }).then(function (data) {
+            var news = data.news;
+            for (var i=0; i < news.length; i++) {
+                var item = document.createElement('li');
+                item.style.position = 'absolute';
+                item.innerHTML = '<h2>' + news[i].caption + '</h2><a href="' + news[i].link + '"></a>';
+                listElm.appendChild(item);
+                nextItem += 1;
+                loadInProgress = false;
+            }
+        })
+    }
+
+    // Initially load some items.
+    loadMore();
+
+    setInterval(function () {
+        var list = document.querySelectorAll('#infinite-list > li');
+        for (var i = 0; i < list.length; i++) {
+            var y = list[i].dataset.y;
+            y = (y !== undefined) ? parseInt(y) - 1 : 20 * i;
+            list[i].dataset.y = y;
+            list[i].style.top = y + 'px';
+        }
+    }, 100);
+
+    setInterval(function () {
+        var list = document.querySelectorAll('#infinite-list > li');
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].dataset.y < -20) {
+                list[i].remove();
+            }
+        }
+        console.log(loadInProgress)
+        if (!loadInProgress && list.length < 30) {
+            loadMore();
+        }
+    }, 200)
+</script>
+</body>
+</html>
