@@ -9,7 +9,7 @@
 <div id="infinite-list"></div>
 <script>
     setInterval(function () {
-        fetch('http://localhost:8000/number/').then(function (data) {
+        fetch('/api/number/').then(function (data) {
             return data.json()
         }).then(function (data) {
             document.getElementById('gosdolg').textContent = data.number
@@ -22,7 +22,7 @@
         loadInProgress = false;
     var loadMore = function () {
         loadInProgress = true;
-        fetch('http://localhost:8000/news/?page=' + nextItem).then(function (data) {
+        fetch('/api/news/?page=' + nextItem).then(function (data) {
             return data.json()
         }).then(function (data) {
             var news = data.news;

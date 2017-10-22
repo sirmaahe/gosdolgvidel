@@ -5,6 +5,7 @@ from aiohttp import ClientSession
 from bs4 import BeautifulSoup
 
 app = Sanic()
+app.static('/', 'public/index.html')
 
 
 def parse(html):
@@ -23,7 +24,7 @@ def parse_nplus1_news(html, page):
     return news
 
 
-@app.route('/number/')
+@app.route('/api/number/')
 async def number(requset):
     async with ClientSession() as session:
         async with session.get('http://www.nationaldebtclocks.org/debtclock/unitedstates') as resp:
@@ -31,7 +32,7 @@ async def number(requset):
     return json({'number': number}, headers={'Access-Control-Allow-Origin': '*'})
 
 
-@app.route('/news/')
+@app.route('/api/news/')
 async def news(request):
     page = int(request.args['page'][0])
     async with ClientSession() as session:
