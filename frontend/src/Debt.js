@@ -10,7 +10,7 @@ export default class Debt extends Component {
         setInterval(() => {
             const that = this;
 
-            fetch('http://localhost:8000/api/number/').then(data => {
+            fetch('/api/number/').then(data => {
                 return data.json()
             }).then(data => {
                 that.setState({ number: data.number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") })

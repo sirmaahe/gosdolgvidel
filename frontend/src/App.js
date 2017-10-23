@@ -52,7 +52,7 @@ class App extends Component {
             return
         }
         this.setState({ loadInProgress: true });
-        fetch('http://localhost:8000/api/news/?page=' + this.state.page).then((data) => {
+        fetch('/api/news/?page=' + this.state.page).then((data) => {
             return data.json()
         }).then((data) => {
             let news = this.state.newsBuffer;
