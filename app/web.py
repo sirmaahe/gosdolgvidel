@@ -4,6 +4,12 @@ from sanic.response import json
 from aiohttp import ClientSession
 from bs4 import BeautifulSoup
 
+from .models import db
+from .settings import DATABASE
+
+db.bind(**DATABASE)
+db.generate_mapping(create_tables=True)
+
 app = Sanic()
 app.static('/', 'frontend/build/index.html')
 app.static('/static/', 'frontend/build/static/')
@@ -12,17 +18,6 @@ app.static('/static/', 'frontend/build/static/')
 def parse(html):
     soup = BeautifulSoup(html)
     return soup.find(id='debtDisplayFast').text
-
-
-def parse_nplus1_news(html, page):
-    soup = BeautifulSoup(html)
-    news = []
-    for article in soup.find_all('article')[(page - 1) * 10:page * 10]:
-        link = article.find('a')['href']
-        caption = article.find(class_='caption').find('h3').text
-        date = article.find(class_='date').find(class_='name')['title']
-        news.append({'caption': caption, 'link': link, 'date': date})
-    return news
 
 
 @app.route('/api/number/')
