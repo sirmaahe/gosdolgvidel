@@ -2,6 +2,8 @@ import requests
 
 from bs4 import BeautifulSoup
 
+DOMAIN = 'https://nplus1.ru'
+
 
 def parse(html):
     soup = BeautifulSoup(html, "html.parser")
@@ -10,7 +12,7 @@ def parse(html):
         link = article.find('a')['href']
         caption = article.find(class_='caption').find('h3').text
         date = article.find(class_='date').find(class_='name')['title']
-        news.append({'caption': caption, 'link': link, 'date': date})
+        news.append({'caption': caption, 'link': '{}{}'.format(DOMAIN, link), 'date': date})
     return news
 
 

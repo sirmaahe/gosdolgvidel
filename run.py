@@ -1,4 +1,4 @@
-from web import app
+from app.web import app
 
 
 app.run(debug=True)

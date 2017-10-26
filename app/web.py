@@ -1,10 +1,13 @@
+from datetime import datetime
+
 from sanic import Sanic
 from sanic.response import json
 
 from aiohttp import ClientSession
 from bs4 import BeautifulSoup
+from pony.orm import db_session
 
-from .models import db
+from .models import db, News
 from .settings import DATABASE
 
 db.bind(**DATABASE)
@@ -31,7 +34,12 @@ async def number(requset):
 @app.route('/api/news/')
 async def news(request):
     page = int(request.args['page'][0])
-    async with ClientSession() as session:
-        async with session.get('https://nplus1.ru/search?q=сша') as resp:
-            news = parse_nplus1_news(await resp.text(), page)
+    with db_session:
+        news = News.select()[(page - 1) * 10:page * 10]
+    news = [
+        {
+            'caption': n.caption,
+            'link': n.link,
+            'date': n.date.strftime('%d-%m-%Y')
+        } for n in news]
     return json({'news': news}, headers={'Access-Control-Allow-Origin': '*'})

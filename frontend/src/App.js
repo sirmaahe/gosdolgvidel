@@ -18,15 +18,12 @@ class App extends Component {
         this.loadMore();
 
         setInterval(this.addElement, 10000);
-        setInterval(this.removeElement, 10000);
     }
 
-    removeElement = () => {
+    removeElement = (that, y) => {
         const news = this.state.news.slice();
-        for (let i = 0; i < news.length; i++) {
-            if (news[i].y > window.innerHeight) {
-                news.splice(i, 1);
-            }
+        if (y > window.innerHeight) {
+            news.splice(i, 1);
         }
         this.setState({ news: news });
     };
@@ -71,7 +68,9 @@ class App extends Component {
                 { this.state.news.map((n, i) => {
                     return <NewsElement
                         key={ i } newsElement={ n.content }
-                        x={ n.line * this.state.width }  y={ -this.state.height }
+                        x={ n.line * this.state.width }
+                        y={ -this.state.height }
+                        checkY={ this.removeElement }
                     />
                 }) }
             </div>
