@@ -15,7 +15,7 @@ export default class Debt extends Component {
             }).then(data => {
                 that.setState({ number: data.number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") })
             })
-        }, 200);
+        }, 1000);
     }
 
     render() {
@@ -25,7 +25,8 @@ export default class Debt extends Component {
                     position: 'absolute',
                     zIndex: '2',
                     left: '20%',
-                    top: '25%'
+                    top: '25%',
+                    textShadow: '0px 0px 3px #CECECE'
                 }}
             >
                 <p

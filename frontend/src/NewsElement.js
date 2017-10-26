@@ -12,8 +12,7 @@ export default class NewsElement extends Component {
         setInterval(() => {
             const y = this.state.y;
             this.setState({ y: y + 1 });
-            this.props.checkY(this, y)
-        }, 100);
+        }, 50);
     }
 
     render() {
@@ -23,7 +22,8 @@ export default class NewsElement extends Component {
                 top: `${ this.state.y }px`,
                 left:  `${ this.state.x }px`,
                 backgroundColor: `${ this.state.color }`,
-                padding: '0 15px 0 15px'
+                padding: '0 25px 0 25px',
+                textShadow: '0px 0px 3px #BEBEBE'
             }}>
                 <p>{ this.props.newsElement.caption }</p>
                 <a href={ this.props.newsElement.link }>moar</a>

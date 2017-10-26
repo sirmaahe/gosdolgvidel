@@ -12,21 +12,13 @@ class App extends Component {
             page: 1,
             newsBuffer: [],
             width: width / 5,
-            height: 100,
+            height: 150,
         };
 
         this.loadMore();
 
-        setInterval(this.addElement, 10000);
+        setInterval(this.addElement, 8000);
     }
-
-    removeElement = (that, y) => {
-        const news = this.state.news.slice();
-        if (y > window.innerHeight) {
-            news.splice(i, 1);
-        }
-        this.setState({ news: news });
-    };
 
     addElement = () => {
         const i = Math.floor(Math.random() * 5);
@@ -70,7 +62,6 @@ class App extends Component {
                         key={ i } newsElement={ n.content }
                         x={ n.line * this.state.width }
                         y={ -this.state.height }
-                        checkY={ this.removeElement }
                     />
                 }) }
             </div>
