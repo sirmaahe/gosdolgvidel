@@ -11,7 +11,7 @@ class App extends Component {
             loadInProgress: false,
             page: 1,
             newsBuffer: [],
-            width: width / 5,
+            width: width / 4,
             height: 150,
         };
 
@@ -21,7 +21,7 @@ class App extends Component {
     }
 
     addElement = () => {
-        const i = Math.floor(Math.random() * 5);
+        const i = Math.floor(Math.random() * 4);
         let news = this.state.news.slice(),
             element = this.state.newsBuffer.shift();
 
@@ -47,7 +47,7 @@ class App extends Component {
             let news = this.state.newsBuffer;
             this.setState({
                 newsBuffer: news.concat(data.news),
-                page: this.state.page++,
+                page: this.state.page + 1,
                 loadInProgress: false
             });
         })
@@ -62,6 +62,7 @@ class App extends Component {
                         key={ i } newsElement={ n.content }
                         x={ n.line * this.state.width }
                         y={ -this.state.height }
+                        width={ this.state.width }
                     />
                 }) }
             </div>

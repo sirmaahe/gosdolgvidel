@@ -23,4 +23,7 @@ def run():
 
     response = requests.get('https://nplus1.ru/search?q=американские ученые разработали')
     news += parse(response.text)
+
+    response = requests.get('https://nplus1.ru/search?q=сша создали')
+    news += parse(response.text)
     return news

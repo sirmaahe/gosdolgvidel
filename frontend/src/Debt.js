@@ -15,7 +15,7 @@ export default class Debt extends Component {
             }).then(data => {
                 that.setState({ number: data.number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") })
             })
-        }, 1000);
+        }, 2000);
     }
 
     render() {
@@ -29,6 +29,15 @@ export default class Debt extends Component {
                     textShadow: '0px 0px 3px #CECECE'
                 }}
             >
+                <p
+                    style={{
+                        fontSize: '20px',
+                        color: '#FEFEFE',
+                        position: 'relative',
+                        left: '-15%',
+                        marginBottom: '-100px'
+                    }}
+                >госдолг сша:</p>
                 <p
                     style={{
                         fontSize: '100px',

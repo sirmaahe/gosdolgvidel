@@ -5,7 +5,7 @@ from sanic.response import json
 
 from aiohttp import ClientSession
 from bs4 import BeautifulSoup
-from pony.orm import db_session
+from pony import orm
 
 from .models import db, News
 from .settings import DATABASE
@@ -34,12 +34,14 @@ async def number(requset):
 @app.route('/api/news/')
 async def news(request):
     page = int(request.args['page'][0])
-    with db_session:
-        news = News.select()[(page - 1) * 10:page * 10]
+    with orm.db_session:
+        news = News.select()\
+            .order_by(orm.desc(News.date))[(page - 1) * 10:page * 10]
     news = [
         {
             'caption': n.caption,
             'link': n.link,
-            'date': n.date.strftime('%d-%m-%Y')
+            'date': n.date.strftime('%d-%m-%Y'),
+            'source': n.source,
         } for n in news]
     return json({'news': news}, headers={'Access-Control-Allow-Origin': '*'})

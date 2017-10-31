@@ -23,10 +23,11 @@ export default class NewsElement extends Component {
                 left:  `${ this.state.x }px`,
                 backgroundColor: `${ this.state.color }`,
                 padding: '0 25px 0 25px',
-                textShadow: '0px 0px 3px #BEBEBE'
+                textShadow: '0px 0px 3px #BEBEBE',
+                width: this.props.width
             }}>
-                <p>{ this.props.newsElement.caption }</p>
-                <a href={ this.props.newsElement.link }>moar</a>
+                <p style={{fontWeight: 'bold'}}>{ this.props.newsElement.caption }</p>
+                <a href={ this.props.newsElement.link } target='blank'>Подробнее</a>
                 <p>{ this.props.newsElement.date }</p>
             </div>
         );
