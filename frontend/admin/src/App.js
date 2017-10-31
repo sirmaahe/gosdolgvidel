@@ -13,7 +13,7 @@ class App extends Component {
     }
 
     loadMore = () => {
-        fetch('/api/').then((data) => {
+        fetch('api/').then((data) => {
             return data.json()
         }).then((data) => {
             this.setState({
