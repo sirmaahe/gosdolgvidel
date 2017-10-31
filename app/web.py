@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from sanic import Sanic
 from sanic.response import json
 
@@ -14,8 +12,8 @@ db.bind(**DATABASE)
 db.generate_mapping(create_tables=True)
 
 app = Sanic()
-app.static('/', 'frontend/build/index.html')
-app.static('/static/', 'frontend/build/static/')
+app.static('/', 'frontend/main/build/index.html')
+app.static('/static/', 'frontend/main/build/static/')
 
 
 def parse(html):
@@ -35,7 +33,7 @@ async def number(requset):
 async def news(request):
     page = int(request.args['page'][0])
     with orm.db_session:
-        news = News.select()\
+        news = News.select(lambda n: not n.hide)\
             .order_by(orm.desc(News.date))[(page - 1) * 10:page * 10]
     news = [
         {

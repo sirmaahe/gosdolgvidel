@@ -12,3 +12,4 @@ class News(db.Entity):
     link = orm.Required(str)
     date = orm.Required(datetime)
     img = orm.Optional(str)
+    hide = orm.Required(bool)

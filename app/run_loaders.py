@@ -30,4 +30,4 @@ if __name__ == '__main__':
                 if len(News.select(lambda n: n.hash == hash and n.source == name)):
                     continue
 
-                News(source=name, hash=hash, **n)
+                News(source=name, hash=hash, hide=False, **n)
