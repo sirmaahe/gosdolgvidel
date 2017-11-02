@@ -23,7 +23,6 @@ export default class NewsElement extends Component {
                 left:  `${ this.state.x }px`,
                 backgroundColor: `${ this.state.color }`,
                 padding: '0 25px 0 25px',
-                textShadow: '0px 0px 3px #BEBEBE',
                 width: this.props.width
             }}>
                 <p style={{fontWeight: 'bold'}}>{ this.props.newsElement.caption }</p>
