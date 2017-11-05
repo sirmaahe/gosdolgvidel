@@ -25,7 +25,7 @@ class App extends Component {
             page: 1,
             newsBuffer: [],
             newsWidth: (width - 110) / lines,
-            height: 200,
+            height: 150,
             lines: lines
         };
 
