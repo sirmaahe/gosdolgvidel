@@ -31,7 +31,7 @@ export default class Debt extends Component {
             >
                 <p
                     style={{
-                        fontSize: '20px',
+                        fontSize: '100%',
                         color: '#FEFEFE',
                         position: 'relative',
                         left: '-15%',
@@ -40,7 +40,7 @@ export default class Debt extends Component {
                 >госдолг сша:</p>
                 <p
                     style={{
-                        fontSize: '100px',
+                        fontSize: '500%',
                         color: '#FEFEFE',
                         position: 'relative',
                         left: '-15%'

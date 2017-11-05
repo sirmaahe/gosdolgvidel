@@ -6,14 +6,27 @@ class App extends Component {
     constructor(props) {
         super(props);
         const width = window.innerWidth;
+        console.log(width)
+        let lines;
+        if (width > 1600) {
+            lines = 5
+        } else if (width > 1300) {
+            lines = 4
+        } else if (width >= 1024) {
+            lines = 3
+        } else if (width > 700) {
+            lines = 2
+        } else {
+            lines = 1
+        }
         this.state = {
             news: [],
             loadInProgress: false,
             page: 1,
             newsBuffer: [],
-            newsWidthPosX: width / 4 - 125,
-            newsWidth: width / 4,
-            height: 150,
+            newsWidth: (width - 110) / lines,
+            height: 200,
+            lines: lines
         };
 
         this.loadMore();
@@ -22,7 +35,7 @@ class App extends Component {
     }
 
     addElement = () => {
-        const i = Math.floor(Math.random() * 5);
+        const i = Math.floor(Math.random() * this.state.lines);
         let news = this.state.news.slice(),
             element = this.state.newsBuffer.shift();
 
@@ -61,7 +74,7 @@ class App extends Component {
                 { this.state.news.map((n, i) => {
                     return <NewsElement
                         key={ i } newsElement={ n.content }
-                        x={ n.line * this.state.newsWidthPosX + 50 }
+                        x={ n.line * this.state.newsWidth + 30 }
                         y={ -this.state.height }
                         width={ this.state.newsWidth }
                     />
