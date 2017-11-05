@@ -8,13 +8,13 @@ class App extends Component {
         const width = window.innerWidth;
         console.log(width)
         let lines;
-        if (width > 1600) {
+        if (width >= 1900) {
             lines = 5
-        } else if (width > 1300) {
+        } else if (width > 1600) {
             lines = 4
-        } else if (width >= 1024) {
+        } else if (width >= 1300) {
             lines = 3
-        } else if (width > 700) {
+        } else if (width > 900) {
             lines = 2
         } else {
             lines = 1
