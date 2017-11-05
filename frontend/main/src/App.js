@@ -11,7 +11,8 @@ class App extends Component {
             loadInProgress: false,
             page: 1,
             newsBuffer: [],
-            width: width / 4,
+            newsWidthPosX: width / 4 - 125,
+            newsWidth: width / 4,
             height: 150,
         };
 
@@ -21,7 +22,7 @@ class App extends Component {
     }
 
     addElement = () => {
-        const i = Math.floor(Math.random() * 4);
+        const i = Math.floor(Math.random() * 5);
         let news = this.state.news.slice(),
             element = this.state.newsBuffer.shift();
 
@@ -60,9 +61,9 @@ class App extends Component {
                 { this.state.news.map((n, i) => {
                     return <NewsElement
                         key={ i } newsElement={ n.content }
-                        x={ n.line * this.state.width }
+                        x={ n.line * this.state.newsWidthPosX + 50 }
                         y={ -this.state.height }
-                        width={ this.state.width }
+                        width={ this.state.newsWidth }
                     />
                 }) }
             </div>
