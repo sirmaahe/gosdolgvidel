@@ -23,6 +23,7 @@ class App extends Component {
             page: 1,
             newsBuffer: [],
             newsWidth: (width - 110) / lines,
+            width: width,
             height: 150,
             lines: lines
         };
@@ -75,6 +76,7 @@ class App extends Component {
                         x={ n.line * this.state.newsWidth + 30 }
                         y={ -this.state.height }
                         width={ this.state.newsWidth }
+                        fontSize={this.state.width > 1024? '110%': '150%'}
                     />
                 }) }
             </div>

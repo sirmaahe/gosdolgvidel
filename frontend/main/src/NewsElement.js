@@ -24,7 +24,7 @@ export default class NewsElement extends Component {
                 backgroundColor: `${ this.state.color }`,
                 padding: '0 25px 0 25px',
                 width: this.props.width,
-                fontSize: this.props.width > 1024? '125%': '150%'
+                fontSize: this.props.fontSize
             }}>
                 <p style={{fontWeight: 'bold'}}>{ this.props.newsElement.caption }</p>
                 <p>{ this.props.newsElement.date } <a href={ this.props.newsElement.link } target='blank'>ссылка</a></p>
