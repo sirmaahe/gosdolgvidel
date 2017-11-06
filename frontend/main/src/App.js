@@ -33,7 +33,7 @@ class App extends Component {
     }
 
     addElement = () => {
-        const i = Math.floor(Math.random() * this.state.lines);
+        const i = Math.floor(Math.random() * (this.state.lines - 1));
         let news = this.state.news.slice(),
             element = this.state.newsBuffer.shift();
 
