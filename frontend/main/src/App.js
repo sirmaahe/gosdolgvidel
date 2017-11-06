@@ -12,10 +12,8 @@ class App extends Component {
             lines = 5
         } else if (width > 1600) {
             lines = 4
-        } else if (width >= 1300) {
+        } else if (width >= 1024) {
             lines = 3
-        } else if (width > 900) {
-            lines = 2
         } else {
             lines = 1
         }
