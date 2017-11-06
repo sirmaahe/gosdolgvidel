@@ -11,8 +11,8 @@ export default class NewsElement extends Component {
 
         setInterval(() => {
             const y = this.state.y;
-            this.setState({ y: y + 1 });
-        }, 50);
+            this.setState({ y: y + 0.25 });
+        }, 12);
     }
 
     render() {
@@ -23,11 +23,11 @@ export default class NewsElement extends Component {
                 left:  `${ this.state.x }px`,
                 backgroundColor: `${ this.state.color }`,
                 padding: '0 25px 0 25px',
-                width: this.props.width
+                width: this.props.width,
+                fontSize: this.props.width > 1024? '125%': '150%'
             }}>
                 <p style={{fontWeight: 'bold'}}>{ this.props.newsElement.caption }</p>
-                <a href={ this.props.newsElement.link } target='blank'>Подробнее</a>
-                <p>{ this.props.newsElement.date }</p>
+                <p>{ this.props.newsElement.date } <a href={ this.props.newsElement.link } target='blank'>ссылка</a></p>
             </div>
         );
     }
