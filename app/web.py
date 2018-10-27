@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sanic import Sanic
 from sanic.response import json
 
@@ -17,15 +19,16 @@ app.static('/static/', 'frontend/main/build/static/')
 
 
 def parse(html):
-    soup = BeautifulSoup(html)
-    return soup.find(id='debtDisplayFast').text
+    debt = int(html['totalDebt'])
+    now = datetime.now()
+    return debt + (now.hour * 60 * 60 + now.minute * 60 + now.second) * 44572
 
 
 @app.route('/api/number/')
 async def number(requset):
     async with ClientSession() as session:
-        async with session.get('http://www.nationaldebtclocks.org/debtclock/unitedstates') as resp:
-            number = parse(await resp.text())
+        async with session.get('https://www.treasurydirect.gov/NP_WS/debt/current?format=json') as resp:
+            number = parse(await resp.json())
     return json({'number': number}, headers={'Access-Control-Allow-Origin': '*'})
 
 
