@@ -1,4 +1,4 @@
 from app.web_admin import app
 
 
-app.run(port=8001, debug=True)
+app.run(port=8283, debug=True)
