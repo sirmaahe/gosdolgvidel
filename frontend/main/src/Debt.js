@@ -4,18 +4,23 @@ export default class Debt extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            number: 'очень много'
+            number: 'очень много',
+            actualNumber: 0
         };
+        fetch('/api/number/').then(data => {
+            return data.json()
+        }).then(data => {
+            this.setState({ number: data.number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), actualNumber: data.number })
+        })
 
         setInterval(() => {
             const that = this;
-
-            fetch('/api/number/').then(data => {
-                return data.json()
-            }).then(data => {
-                that.setState({ number: data.number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") })
-            })
-        }, 2000);
+            if (!that.state.actualNumber) {
+                return
+            }
+            const newNumber = that.state.actualNumber + 44572
+            that.setState({ number: newNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), actualNumber: newNumber })
+        }, 1000);
     }
 
     render() {
